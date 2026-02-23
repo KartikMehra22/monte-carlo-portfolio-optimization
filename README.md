@@ -1,53 +1,73 @@
 # Monte Carlo Portfolio Optimization
 
-A research-oriented Python project for simulating portfolio performance and optimizing asset allocation using historical market data, Monte Carlo methods, and advanced risk analytics.
+A research-oriented Python project for end-to-end portfolio construction and risk analysis using historical market data, Monte Carlo simulation, and advanced quantitative finance techniques.
 
 ## 🚀 Key Features
 
-- **Statistical Return Analysis**: Calculation of daily log returns, annualized mean returns, and volatility.
+- **Statistical Return Analysis**: Daily log returns, annualized mean returns, and volatility estimation.
 - **Advanced Visualizations**:
-  - **Return Distributions**: Histogram and KDE plots for asset returns.
-  - **Correlation Heatmap**: Visualizing inter-asset relationships.
-  - **Drawdown Curve**: Tracking peak-to-trough declines for risk assessment.
+  - Return Distributions (Histogram & KDE)
+  - Correlation Heatmap
+  - Drawdown Curve
 - **Monte Carlo Simulation**:
-  - Generation of **10,000+ random portfolio weightings**.
-  - Mapping the **Efficient Frontier** (Risk vs. Return).
-  - Identification of the **Maximum Sharpe Ratio** and **Minimum Volatility** portfolios.
+  - 10,000+ random portfolio weightings
+  - Efficient Frontier (Risk vs. Return)
+  - Maximum Sharpe Ratio & Minimum Volatility identification
 - **Sensitivity & Stability Analysis**:
-  - Bootstrap resampling to test robustness of optimal weights.
-  - Parameter sensitivity to changes in expected returns and covariance.
+  - Bootstrap resampling of optimal weights
+  - Parameter sensitivity to changes in returns and covariance
 - **Stress Testing & Scenario Analysis**:
-  - Simulation under historical crash scenarios (e.g., COVID-19, 2008 GFC).
-  - Custom shock factors applied to individual assets.
-- **Automated Data Acquisition**: Integrated `yfinance` pipeline for seamless data fetching and preprocessing.
+  - Historical crash scenarios (COVID-19, 2008 GFC)
+  - Custom asset-level shock simulations
+- **Robust Optimization Using Shrinkage**:
+  - Ledoit-Wolf covariance shrinkage estimator
+  - Improved out-of-sample portfolio stability
+- **Risk Metrics**:
+  - Value at Risk (VaR) — parametric & historical
+  - Conditional Value at Risk (CVaR / Expected Shortfall)
+  - Max Drawdown, Sortino Ratio, Calmar Ratio
+- **Automated Data Acquisition**: `yfinance` pipeline for data fetching and preprocessing.
 
 ## 🛠 Technology Stack
 
-- **Data Handling**: `pandas`, `numpy`
-- **Visualization**: `matplotlib`, `seaborn`
-- **Financial Data**: `yfinance`
-- **Optimization**: `scipy`
-- **Environment**: Jupyter Notebooks
+| Category        | Libraries                          |
+|-----------------|------------------------------------|
+| Data Handling   | `pandas`, `numpy`                  |
+| Visualization   | `matplotlib`, `seaborn`            |
+| Financial Data  | `yfinance`                         |
+| Optimization    | `scipy`, `sklearn` (shrinkage)     |
+| Environment     | Jupyter Notebooks                  |
 
 ## 📈 Methodology
 
 ### Phase 1: Statistical Estimation
-Estimation of the first and second moments of asset returns (Mean and Variance/Covariance). This phase focuses on cleaning historical data and calculating the statistical properties required for simulation.
+Estimation of the first and second moments of asset returns (Mean and Variance/Covariance) from cleaned historical data.
 
-### Phase 2: Mean-Variance Optimization
-Using Monte Carlo simulations to populate the risk-return space. By generating thousands of random weight combinations, we can visualize the Efficient Frontier and mathematically locate optimal capital allocations based on risk tolerance.
+### Phase 2: Mean-Variance Optimization (Monte Carlo)
+Monte Carlo simulation over 10,000+ weight combinations to map the Efficient Frontier and identify optimal allocations.
 
 ### Phase 3: Sensitivity & Stability Analysis
-Bootstrap resampling of historical returns to stress-test the stability of optimal portfolio weights. Includes parameter perturbation to measure sensitivity of outcomes to changes in inputs.
+Bootstrap resampling to stress-test the robustness of optimal weights. Parameter perturbation quantifies sensitivity to input changes.
 
 ### Phase 4: Stress Testing & Scenario Analysis
-Portfolio valuation under extreme market conditions. Historical crash scenarios and asset-level shock simulations assess downside risk and validate portfolio resilience.
+Portfolio valuation under extreme market conditions using historical crash scenarios and asset-level shock factors.
+
+### Phase 5: Robust Optimization Using Shrinkage
+Ledoit-Wolf shrinkage applied to the sample covariance matrix to reduce estimation error and improve out-of-sample performance.
+
+### Phase 6: Risk Metrics & Final Analysis
+Comprehensive risk reporting including VaR, CVaR, Sortino Ratio, Calmar Ratio, and Max Drawdown. Final portfolio selection and presentation.
 
 ## 📂 Project Structure
 
-- `notebooks/portfolio_optimization.ipynb`: The main research workspace and execution engine.
-- `data/asset_prices.csv`: Consolidated "wide" format dataset for tracked assets.
-- `requirements.txt`: Python dependencies.
+```
+monte-carlo-portfolio-optimization/
+├── notebooks/
+│   └── portfolio_optimization.ipynb   # Main research notebook
+├── data/
+│   └── asset_prices.csv               # Historical price data (wide format)
+└── requirements.txt                   # Python dependencies
+```
 
 ## ⚙️ Getting Started
 
@@ -57,11 +77,11 @@ Portfolio valuation under extreme market conditions. Historical crash scenarios 
    pip install -r requirements.txt
    ```
 3. **Usage**:
-   Open `notebooks/portfolio_optimization.ipynb` to run the full analysis pipeline.
+   Open `notebooks/portfolio_optimization.ipynb` to run the full 6-phase analysis pipeline.
 
 ## 📝 Recent Updates
-- Added **Stress Testing & Scenario Analysis** (Phase 4) with crash scenario simulations.
-- Added **Sensitivity & Stability Analysis** (Phase 3) with bootstrap resampling.
-- Integrated a comprehensive Mean-Variance Optimization phase.
-- Standardized data loading using a centralized wide-format CSV.
-- Added Sharpe Ratio color-coding to the Efficient Frontier visualization.
+- **Finalized** full end-to-end portfolio optimization pipeline.
+- Added **Risk Metrics** (VaR, CVaR, Sortino, Calmar, Max Drawdown).
+- Added **Robust Optimization** via Ledoit-Wolf covariance shrinkage.
+- Added **Stress Testing & Scenario Analysis** with crash simulations.
+- Added **Sensitivity & Stability Analysis** with bootstrap resampling.
